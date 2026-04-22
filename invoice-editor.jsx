@@ -214,6 +214,184 @@ input, textarea, select { font-family: inherit; font-size: inherit; color: inher
 }
 .add-item-btn:hover { border-color: var(--ink); color: var(--ink); background: var(--ink-10); }
 
+/* ============ VIEW TABS (Editor / Library) ============ */
+.view-tabs {
+  display: inline-flex; border: 1px solid var(--hair); border-radius: 6px;
+  overflow: hidden; height: 30px; margin-left: 12px; flex-shrink: 0;
+}
+.view-tabs button {
+  background: #fff; border: none; padding: 0 14px;
+  font-size: 12.5px; font-weight: 500;
+  color: var(--ink-50); cursor: pointer;
+  border-right: 1px solid var(--hair);
+  transition: all 0.12s ease; line-height: 1;
+  font-family: 'Noto Sans', sans-serif;
+}
+.view-tabs button:last-child { border-right: none; }
+.view-tabs button:hover { background: var(--ink-10); color: var(--ink); }
+.view-tabs button.active { background: var(--ink); color: #fff; }
+
+/* ============ SELECTOR + READONLY PREVIEW (in simplified editor) ============ */
+.selector {
+  margin-bottom: 10px;
+}
+.selector-row {
+  display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: end;
+}
+.selector .field { margin-bottom: 0; }
+.selector-link {
+  background: transparent; border: none; padding: 0;
+  color: var(--ink-50); font-size: 11.5px; cursor: pointer;
+  text-decoration: underline; text-underline-offset: 2px;
+  margin-top: 8px; font-family: 'Noto Sans', sans-serif;
+  display: inline-block;
+}
+.selector-link:hover { color: var(--ink); }
+
+.readonly-preview {
+  background: #fafafa;
+  border: 1px solid var(--hair);
+  border-radius: 8px;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+}
+.readonly-preview .rp-name {
+  font-size: 13px; font-weight: 600; color: var(--ink);
+  overflow-wrap: anywhere;
+}
+.readonly-preview .rp-sub {
+  font-size: 11.5px; color: var(--ink-50); margin-top: 2px;
+  overflow-wrap: anywhere;
+}
+.readonly-preview .rp-lines {
+  display: flex; flex-direction: column; gap: 4px;
+  margin-top: 10px;
+  font-size: 11.5px;
+}
+.readonly-preview .rp-lines > div {
+  display: grid; grid-template-columns: 70px 1fr;
+  gap: 8px; align-items: baseline;
+}
+.readonly-preview .rp-k { color: var(--ink-50); font-weight: 500; }
+.readonly-preview .rp-v { color: var(--ink); overflow-wrap: anywhere; }
+.readonly-preview .rp-v.mono {
+  font-family: 'Noto Sans Mono', monospace; font-size: 11px;
+}
+.readonly-preview .rp-v.addr { white-space: pre-line; color: var(--ink-70); }
+.readonly-preview .rp-empty {
+  font-size: 12px; color: var(--ink-50); text-align: center;
+  padding: 4px;
+}
+
+/* ============ LIBRARY VIEW ============ */
+.library {
+  flex: 1; overflow-y: auto;
+  padding: 24px;
+  background: #f7f7f9;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+  min-height: 0;
+}
+@media (max-width: 900px) {
+  .library { grid-template-columns: 1fr; gap: 16px; padding: 16px; }
+}
+
+.library-col {
+  background: #fff;
+  border: 1px solid var(--hair);
+  border-radius: 10px;
+  padding: 20px;
+  display: flex; flex-direction: column; gap: 12px;
+}
+.library-col-head {
+  display: flex; flex-direction: column; gap: 4px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--hair);
+  margin-bottom: 4px;
+}
+.library-col-title {
+  font-size: 15px; font-weight: 600; color: var(--ink); letter-spacing: -0.2px;
+}
+.library-col-desc {
+  font-size: 12px; color: var(--ink-50); line-height: 1.5;
+}
+.library-col-head .btn {
+  align-self: flex-start;
+  margin-top: 8px;
+}
+.library-list {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.library-empty {
+  padding: 24px; text-align: center;
+  font-size: 12.5px; color: var(--ink-50);
+  border: 1px dashed var(--hair); border-radius: 8px;
+}
+
+.lib-card {
+  border: 1px solid var(--hair);
+  border-radius: 8px;
+  background: #fff;
+  overflow: hidden;
+}
+.lib-card.open {
+  border-color: var(--ink-30);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.lib-card-head {
+  padding: 12px 14px;
+  cursor: pointer;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 10px; align-items: center;
+  transition: background 0.12s ease;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-family: 'Noto Sans', sans-serif;
+}
+.lib-card-head:hover { background: var(--ink-10); }
+.lib-card-title {
+  font-size: 13px; font-weight: 600; color: var(--ink);
+  overflow-wrap: anywhere;
+}
+.lib-card-sub {
+  font-size: 11.5px; color: var(--ink-50); margin-top: 2px;
+  overflow-wrap: anywhere;
+}
+.lib-card-head .chev {
+  color: var(--ink-50);
+  display: inline-flex; align-items: center;
+}
+.lib-card-body {
+  padding: 14px 16px 16px;
+  border-top: 1px solid var(--hair);
+}
+.lib-card-section {
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 10px; letter-spacing: 0.4px; text-transform: uppercase;
+  color: var(--ink-50); font-weight: 500;
+  margin: 12px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--hair);
+}
+.lib-card-section:first-child { margin-top: 0; }
+.lib-card-actions {
+  display: flex; justify-content: flex-end;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--hair);
+}
+.btn.danger {
+  color: var(--danger);
+  background: #fff;
+}
+.btn.danger:hover {
+  background: #fef2f2;
+  border-color: #fecaca;
+}
+
 /* ============ PREVIEW CONTAINER ============ */
 .preview-bg { background: var(--bg); overflow-y: auto; padding: 32px 16px 80px; }
 .paper {
@@ -638,7 +816,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; color: inher
 
 .t-ledger .ld-three { border: 1px solid #d8d8d8; margin-bottom: 20px; }
 .t-ledger .ld-three-head {
-  display: grid; grid-template-columns: 1.2fr 1fr 1.2fr;
+  display: grid; grid-template-columns: 1fr 1fr;
   background: #eaeaea;
   -webkit-print-color-adjust: exact; print-color-adjust: exact;
 }
@@ -655,7 +833,7 @@ input, textarea, select { font-family: inherit; font-size: inherit; color: inher
   .t-ledger .ld-three-head > div:last-child { border-bottom: none; }
 }
 
-.t-ledger .ld-three-body { display: grid; grid-template-columns: 1.2fr 1fr 1.2fr; }
+.t-ledger .ld-three-body { display: grid; grid-template-columns: 1fr 1fr; }
 @media (max-width: 520px) { .t-ledger .ld-three-body { grid-template-columns: 1fr; } }
 .t-ledger .ld-three-col {
   padding: 12px 14px; border-right: 1px solid #d8d8d8;
@@ -1039,6 +1217,8 @@ const DEFAULT_DATA = () => {
         qty: 1, rate: 500 },
     ],
     payment: DEFAULT_SENDER_PAYMENT(),
+    loadedSenderId: 'me-default',
+    loadedClientId: null,
   };
 };
 
@@ -1163,8 +1343,7 @@ export default function InvoiceEditor({ initialData, initialClients, initialSend
   const [data, setData] = useState(() => initialData || DEFAULT_DATA());
   const [clients, setClients] = useState(() => initialClients || DEFAULT_CLIENTS());
   const [senders, setSenders] = useState(() => initialSenders || DEFAULT_SENDERS());
-  const [clientsOpen, setClientsOpen] = useState(false);
-  const [sendersOpen, setSendersOpen] = useState(false);
+  const [view, setView] = useState('editor');
   const [loaded, setLoaded] = useState(Boolean(initialData));
   const nextItemIdRef = useRef(
     initialData?.items?.length
@@ -1312,381 +1491,550 @@ export default function InvoiceEditor({ initialData, initialClients, initialSend
         <div className="topbar">
           <div className="topbar-title">
             <span className="brand">invoo.app</span>
+            <div className="view-tabs" role="tablist" aria-label="View">
+              <button
+                className={view === 'editor' ? 'active' : ''}
+                onClick={() => setView('editor')}
+                type="button" role="tab" aria-selected={view === 'editor'}
+              >Editor</button>
+              <button
+                className={view === 'library' ? 'active' : ''}
+                onClick={() => setView('library')}
+                type="button" role="tab" aria-selected={view === 'library'}
+              >Library</button>
+            </div>
           </div>
-          <div className="topbar-actions">
-            <div className="theme-switch" role="tablist" aria-label="Design theme">
-              {THEMES.map(t => (
-                <button
-                  key={t.key}
-                  className={theme === t.key ? 'active' : ''}
-                  onClick={() => setTheme(t.key)}
-                  type="button" role="tab" aria-selected={theme === t.key}
-                >{t.label}</button>
-              ))}
-            </div>
-            <button className="btn btn-ghost" onClick={resetAll} title="Reset invoice fields">
-              <IconReset /> Reset
-            </button>
-            <button className="btn btn-primary" onClick={handlePrint}>
-              <IconPrint /> Print / Save PDF
-            </button>
-          </div>
-        </div>
-
-        <div className="main">
-          <div className="editor">
-            {/* Invoice Details */}
-            <div className="section">
-              <div className="section-label">Invoice Details</div>
-              <div className="field">
-                <label className="field-label">Invoice Number</label>
-                <input className="input is-mono"
-                  value={data.meta.number}
-                  onChange={e => patchMeta({ number: e.target.value })}
-                  placeholder="#3" />
+          {view === 'editor' && (
+            <div className="topbar-actions">
+              <div className="theme-switch" role="tablist" aria-label="Design theme">
+                {THEMES.map(t => (
+                  <button
+                    key={t.key}
+                    className={theme === t.key ? 'active' : ''}
+                    onClick={() => setTheme(t.key)}
+                    type="button" role="tab" aria-selected={theme === t.key}
+                  >{t.label}</button>
+                ))}
               </div>
-              <div className="field-row field-row-2">
-                <div className="field">
-                  <label className="field-label">Invoice Date</label>
-                  <input type="date" className="input is-mono"
-                    value={data.meta.date}
-                    onChange={e => patchMeta({ date: e.target.value })} />
-                </div>
-                <div className="field">
-                  <label className="field-label">Payment Terms (days)</label>
-                  <input type="number" min="0" step="1"
-                    className="input input-num is-mono"
-                    value={data.meta.paymentTermsDays}
-                    onChange={e => patchMeta({ paymentTermsDays: e.target.value })} />
-                </div>
-              </div>
-              <div className="field-row field-row-2">
-                <div className="field">
-                  <label className="field-label">Service Period — From</label>
-                  <input type="date" className="input is-mono"
-                    value={data.meta.servicePeriodFrom}
-                    onChange={e => patchMeta({ servicePeriodFrom: e.target.value })} />
-                </div>
-                <div className="field">
-                  <label className="field-label">Service Period — To</label>
-                  <input type="date" className="input is-mono"
-                    value={data.meta.servicePeriodTo}
-                    onChange={e => patchMeta({ servicePeriodTo: e.target.value })} />
-                </div>
-              </div>
-              <div className="field-row field-row-2">
-                <div className="field">
-                  <label className="field-label">Currency</label>
-                  <select className="select"
-                    value={data.meta.currency}
-                    onChange={e => patchMeta({ currency: e.target.value })}>
-                    {CURRENCIES.map(c => <option key={c.code} value={c.code}>{c.code}</option>)}
-                  </select>
-                </div>
-                <div className="field">
-                  <label className="field-label">Tax % (0 for reverse charge)</label>
-                  <input type="number" min="0" step="0.5"
-                    className="input input-num is-mono"
-                    value={data.meta.taxPercent}
-                    onChange={e => patchMeta({ taxPercent: e.target.value })} />
-                </div>
-              </div>
-            </div>
-
-            {/* From — with Sender picker */}
-            <div className="section">
-              <div className="section-label">From — Your Details</div>
-
-              <div className="picker">
-                <div className="picker-label">Saved sender profiles (loads From + Payment)</div>
-                <select className="select" value=""
-                  onChange={e => { loadSender(e.target.value); e.target.value = ''; }}>
-                  <option value="">— Select a profile to autofill —</option>
-                  {senders.map(s => (
-                    <option key={s.id} value={s.id}>{s.label}</option>
-                  ))}
-                </select>
-                <button className="btn btn-ghost" onClick={saveAsSender}>
-                  <IconPlus /> Save
-                </button>
-              </div>
-
-              <div className="field-row field-row-2">
-                <div className="field">
-                  <label className="field-label">Name</label>
-                  <input className="input"
-                    value={data.from.name}
-                    onChange={e => patchFrom({ name: e.target.value })} />
-                </div>
-                <div className="field">
-                  <label className="field-label">Role / Subtitle</label>
-                  <input className="input"
-                    value={data.from.role}
-                    onChange={e => patchFrom({ role: e.target.value })}
-                    placeholder="Autónomo" />
-                </div>
-              </div>
-              <div className="field">
-                <label className="field-label">Address</label>
-                <textarea className="textarea" rows={3}
-                  value={data.from.address}
-                  onChange={e => patchFrom({ address: e.target.value })} />
-              </div>
-              <div className="field-row field-row-2">
-                <div className="field">
-                  <label className="field-label">Tax label</label>
-                  <input className="input"
-                    value={data.from.taxLabel}
-                    onChange={e => patchFrom({ taxLabel: e.target.value })} />
-                </div>
-                <div className="field">
-                  <label className="field-label">Tax value (NIF)</label>
-                  <input className="input is-mono"
-                    value={data.from.taxValue}
-                    onChange={e => patchFrom({ taxValue: e.target.value })} />
-                </div>
-              </div>
-              <div className="field-row field-row-2">
-                <div className="field">
-                  <label className="field-label">Phone</label>
-                  <input className="input is-mono"
-                    value={data.from.phone}
-                    onChange={e => patchFrom({ phone: e.target.value })} />
-                </div>
-                <div className="field">
-                  <label className="field-label">Email</label>
-                  <input className="input is-mono"
-                    value={data.from.email}
-                    onChange={e => patchFrom({ email: e.target.value })} />
-                </div>
-              </div>
-
-              <div className="profile-list">
-                <div className="profile-list-head" onClick={() => setSendersOpen(o => !o)}>
-                  <span>Manage saved profiles ({senders.length})</span>
-                  <IconChevron open={sendersOpen} />
-                </div>
-                {sendersOpen && (
-                  <>
-                    {senders.length === 0 && (
-                      <div className="profile-list-empty">No saved profiles yet.</div>
-                    )}
-                    {senders.map(s => (
-                      <div className="profile-list-row" key={s.id}>
-                        <div className="meta">
-                          <div className="ln">{s.label}</div>
-                          <div className="sub">
-                            {s.from?.name || ''}{s.from?.taxValue ? ` · ${s.from.taxValue}` : ''}
-                          </div>
-                        </div>
-                        <button className="btn btn-ghost"
-                          style={{ fontSize: 11, padding: '5px 10px' }}
-                          onClick={() => loadSender(s.id)}>
-                          Load
-                        </button>
-                        <button className="icon-btn" onClick={() => deleteSender(s.id)}
-                          aria-label="Delete profile" title="Delete profile">
-                          <IconTrash />
-                        </button>
-                      </div>
-                    ))}
-                  </>
-                )}
-              </div>
-            </div>
-
-            {/* Billed To — Client */}
-            <div className="section">
-              <div className="section-label">Billed To — Client</div>
-
-              <div className="picker">
-                <div className="picker-label">Saved clients</div>
-                <select className="select" value=""
-                  onChange={e => { loadClient(e.target.value); e.target.value = ''; }}>
-                  <option value="">— Select to autofill —</option>
-                  {clients.map(c => (
-                    <option key={c.id} value={c.id}>{c.label}</option>
-                  ))}
-                </select>
-                <button className="btn btn-ghost" onClick={saveAsClient}>
-                  <IconPlus /> Save
-                </button>
-              </div>
-
-              <div className="field">
-                <label className="field-label">Client name</label>
-                <input className="input"
-                  value={data.billedTo.name}
-                  onChange={e => patchBilledTo({ name: e.target.value })}
-                  placeholder="Client Ltd" />
-              </div>
-              <div className="field">
-                <label className="field-label">Address</label>
-                <textarea className="textarea" rows={3}
-                  value={data.billedTo.address}
-                  onChange={e => patchBilledTo({ address: e.target.value })} />
-              </div>
-              <div className="field-row field-row-2">
-                <div className="field">
-                  <label className="field-label">Tax label</label>
-                  <input className="input"
-                    value={data.billedTo.taxLabel}
-                    onChange={e => patchBilledTo({ taxLabel: e.target.value })}
-                    placeholder="VAT" />
-                </div>
-                <div className="field">
-                  <label className="field-label">Tax value</label>
-                  <input className="input is-mono"
-                    value={data.billedTo.taxValue}
-                    onChange={e => patchBilledTo({ taxValue: e.target.value })}
-                    placeholder="DE35 7299 821" />
-                </div>
-              </div>
-
-              <div className="profile-list">
-                <div className="profile-list-head" onClick={() => setClientsOpen(o => !o)}>
-                  <span>Manage saved clients ({clients.length})</span>
-                  <IconChevron open={clientsOpen} />
-                </div>
-                {clientsOpen && (
-                  <>
-                    {clients.length === 0 && (
-                      <div className="profile-list-empty">No saved clients yet.</div>
-                    )}
-                    {clients.map(c => (
-                      <div className="profile-list-row" key={c.id}>
-                        <div className="meta">
-                          <div className="ln">{c.label}</div>
-                          <div className="sub">{c.name}{c.taxValue ? ` · ${c.taxValue}` : ''}</div>
-                        </div>
-                        <button className="btn btn-ghost"
-                          style={{ fontSize: 11, padding: '5px 10px' }}
-                          onClick={() => loadClient(c.id)}>
-                          Load
-                        </button>
-                        <button className="icon-btn" onClick={() => deleteClient(c.id)}
-                          aria-label="Delete client" title="Delete client">
-                          <IconTrash />
-                        </button>
-                      </div>
-                    ))}
-                  </>
-                )}
-              </div>
-            </div>
-
-            {/* Line Items */}
-            <div className="section">
-              <div className="section-label">Line Items — Services</div>
-              {data.items.map((item, idx) => (
-                <div className="item-card" key={item.id}>
-                  <div className="item-card-head">
-                    <span className="item-index">{String(idx + 1).padStart(2, '0')}</span>
-                    <span className="item-amount">
-                      {formatMoney(toNum(item.qty) * toNum(item.rate), ccy)}
-                    </span>
-                    <button className="icon-btn" onClick={() => removeItem(item.id)}
-                      aria-label="Remove item" title="Remove item">
-                      <IconTrash />
-                    </button>
-                  </div>
-                  <div className="field">
-                    <label className="field-label">Title</label>
-                    <input className="input"
-                      value={item.title}
-                      onChange={e => updateItem(item.id, { title: e.target.value })}
-                      placeholder="Service title" />
-                  </div>
-                  <div className="field">
-                    <label className="field-label">Description</label>
-                    <textarea className="textarea" rows={3}
-                      value={item.desc}
-                      onChange={e => updateItem(item.id, { desc: e.target.value })} />
-                  </div>
-                  <div className="field-row field-row-2">
-                    <div className="field">
-                      <label className="field-label">Quantity</label>
-                      <input type="number" step="any" min="0"
-                        className="input input-num is-mono"
-                        value={item.qty}
-                        onChange={e => updateItem(item.id, { qty: e.target.value })} />
-                    </div>
-                    <div className="field">
-                      <label className="field-label">Rate ({ccy})</label>
-                      <input type="number" step="0.01" min="0"
-                        className="input input-money is-mono"
-                        value={item.rate}
-                        onChange={e => updateItem(item.id, { rate: e.target.value })} />
-                    </div>
-                  </div>
-                </div>
-              ))}
-              {data.items.length === 0 && (
-                <div style={{
-                  padding: 24, textAlign: 'center', color: 'var(--ink-50)',
-                  border: '1px dashed var(--hair)', borderRadius: 8, marginBottom: 10, fontSize: 13,
-                }}>No line items yet.</div>
-              )}
-              <button className="add-item-btn" onClick={addItem}>
-                <IconPlus /> Add line item
+              <button className="btn btn-ghost" onClick={resetAll} title="Reset invoice fields">
+                <IconReset /> Reset
+              </button>
+              <button className="btn btn-primary" onClick={handlePrint}>
+                <IconPrint /> Print / Save PDF
               </button>
             </div>
-
-            {/* Payment */}
-            <div className="section">
-              <div className="section-label">Payment Information</div>
-              <div className="field-row field-row-2">
-                <div className="field">
-                  <label className="field-label">Beneficiary</label>
-                  <input className="input"
-                    value={data.payment.beneficiary}
-                    onChange={e => patchPayment({ beneficiary: e.target.value })} />
-                </div>
-                <div className="field">
-                  <label className="field-label">Bank</label>
-                  <input className="input"
-                    value={data.payment.bank}
-                    onChange={e => patchPayment({ bank: e.target.value })} />
-                </div>
-              </div>
-              <div className="field">
-                <label className="field-label">IBAN</label>
-                <input className="input is-mono"
-                  value={data.payment.iban}
-                  onChange={e => patchPayment({ iban: e.target.value })} />
-              </div>
-              <div className="field-row field-row-2">
-                <div className="field">
-                  <label className="field-label">SWIFT / BIC</label>
-                  <input className="input is-mono"
-                    value={data.payment.swift}
-                    onChange={e => patchPayment({ swift: e.target.value })} />
-                </div>
-                <div className="field">
-                  <label className="field-label">Correspondent BIC</label>
-                  <input className="input is-mono"
-                    value={data.payment.correspondentBic}
-                    onChange={e => patchPayment({ correspondentBic: e.target.value })} />
-                </div>
-              </div>
-              <div className="field">
-                <label className="field-label">Bank address</label>
-                <textarea className="textarea" rows={2}
-                  value={data.payment.bankAddress}
-                  onChange={e => patchPayment({ bankAddress: e.target.value })} />
-              </div>
-            </div>
-          </div>
-
-          {/* PREVIEW */}
-          <div className="preview-bg">
-            <div className={`paper t-${theme}`}>
-              <Preview theme={theme} {...previewProps} />
-            </div>
-          </div>
+          )}
         </div>
+
+        {view === 'editor' ? (
+          <div className="main">
+            <div className="editor">
+              {/* Invoice Details */}
+              <div className="section">
+                <div className="section-label">Invoice Details</div>
+                <div className="field">
+                  <label className="field-label">Invoice Number</label>
+                  <input className="input is-mono"
+                    value={data.meta.number}
+                    onChange={e => patchMeta({ number: e.target.value })}
+                    placeholder="#3" />
+                </div>
+                <div className="field-row field-row-2">
+                  <div className="field">
+                    <label className="field-label">Invoice Date</label>
+                    <input type="date" className="input is-mono"
+                      value={data.meta.date}
+                      onChange={e => patchMeta({ date: e.target.value })} />
+                  </div>
+                  <div className="field">
+                    <label className="field-label">Payment Terms (days)</label>
+                    <input type="number" min="0" step="1"
+                      className="input input-num is-mono"
+                      value={data.meta.paymentTermsDays}
+                      onChange={e => patchMeta({ paymentTermsDays: e.target.value })} />
+                  </div>
+                </div>
+                <div className="field-row field-row-2">
+                  <div className="field">
+                    <label className="field-label">Service Period — From</label>
+                    <input type="date" className="input is-mono"
+                      value={data.meta.servicePeriodFrom}
+                      onChange={e => patchMeta({ servicePeriodFrom: e.target.value })} />
+                  </div>
+                  <div className="field">
+                    <label className="field-label">Service Period — To</label>
+                    <input type="date" className="input is-mono"
+                      value={data.meta.servicePeriodTo}
+                      onChange={e => patchMeta({ servicePeriodTo: e.target.value })} />
+                  </div>
+                </div>
+                <div className="field-row field-row-2">
+                  <div className="field">
+                    <label className="field-label">Currency</label>
+                    <select className="select"
+                      value={data.meta.currency}
+                      onChange={e => patchMeta({ currency: e.target.value })}>
+                      {CURRENCIES.map(c => <option key={c.code} value={c.code}>{c.code}</option>)}
+                    </select>
+                  </div>
+                  <div className="field">
+                    <label className="field-label">Tax % (0 for reverse charge)</label>
+                    <input type="number" min="0" step="0.5"
+                      className="input input-num is-mono"
+                      value={data.meta.taxPercent}
+                      onChange={e => patchMeta({ taxPercent: e.target.value })} />
+                  </div>
+                </div>
+              </div>
+
+              {/* From — compact selector only */}
+              <div className="section">
+                <div className="section-label">From — Your Details</div>
+                <div className="selector">
+                  <div className="selector-row">
+                    <div className="field" style={{ margin: 0 }}>
+                      <label className="field-label">Sender profile</label>
+                      <select className="select" value=""
+                        onChange={e => { if (e.target.value) loadSender(e.target.value); e.target.value = ''; }}>
+                        <option value="">— Select a profile —</option>
+                        {senders.map(s => (
+                          <option key={s.id} value={s.id}>{s.label}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <button className="selector-link" onClick={() => setView('library')}>
+                    Manage sender profiles in Library →
+                  </button>
+                </div>
+                <ReadonlyPreviewSender data={data} />
+              </div>
+
+              {/* Billed To — compact selector only */}
+              <div className="section">
+                <div className="section-label">Billed To — Client</div>
+                <div className="selector">
+                  <div className="selector-row">
+                    <div className="field" style={{ margin: 0 }}>
+                      <label className="field-label">Client</label>
+                      <select className="select" value=""
+                        onChange={e => { if (e.target.value) loadClient(e.target.value); e.target.value = ''; }}>
+                        <option value="">— Select a client —</option>
+                        {clients.map(c => (
+                          <option key={c.id} value={c.id}>{c.label}</option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                  <button className="selector-link" onClick={() => setView('library')}>
+                    Manage clients in Library →
+                  </button>
+                </div>
+                <ReadonlyPreviewClient data={data} />
+              </div>
+
+              {/* Line Items */}
+              <div className="section">
+                <div className="section-label">Line Items — Services</div>
+                {data.items.map((item, idx) => (
+                  <div className="item-card" key={item.id}>
+                    <div className="item-card-head">
+                      <span className="item-index">{String(idx + 1).padStart(2, '0')}</span>
+                      <span className="item-amount">
+                        {formatMoney(toNum(item.qty) * toNum(item.rate), ccy)}
+                      </span>
+                      <button className="icon-btn" onClick={() => removeItem(item.id)}
+                        aria-label="Remove item" title="Remove item">
+                        <IconTrash />
+                      </button>
+                    </div>
+                    <div className="field">
+                      <label className="field-label">Title</label>
+                      <input className="input"
+                        value={item.title}
+                        onChange={e => updateItem(item.id, { title: e.target.value })}
+                        placeholder="Service title" />
+                    </div>
+                    <div className="field">
+                      <label className="field-label">Description</label>
+                      <textarea className="textarea" rows={3}
+                        value={item.desc}
+                        onChange={e => updateItem(item.id, { desc: e.target.value })} />
+                    </div>
+                    <div className="field-row field-row-2">
+                      <div className="field">
+                        <label className="field-label">Quantity</label>
+                        <input type="number" step="any" min="0"
+                          className="input input-num is-mono"
+                          value={item.qty}
+                          onChange={e => updateItem(item.id, { qty: e.target.value })} />
+                      </div>
+                      <div className="field">
+                        <label className="field-label">Rate ({ccy})</label>
+                        <input type="number" step="0.01" min="0"
+                          className="input input-money is-mono"
+                          value={item.rate}
+                          onChange={e => updateItem(item.id, { rate: e.target.value })} />
+                      </div>
+                    </div>
+                  </div>
+                ))}
+                {data.items.length === 0 && (
+                  <div style={{
+                    padding: 24, textAlign: 'center', color: 'var(--ink-50)',
+                    border: '1px dashed var(--hair)', borderRadius: 8, marginBottom: 10, fontSize: 13,
+                  }}>No line items yet.</div>
+                )}
+                <button className="add-item-btn" onClick={addItem}>
+                  <IconPlus /> Add line item
+                </button>
+              </div>
+            </div>
+
+            <div className="preview-bg">
+              <div className={`paper t-${theme}`}>
+                <Preview theme={theme} {...previewProps} />
+              </div>
+            </div>
+          </div>
+        ) : (
+          <LibraryView
+            senders={senders} setSenders={setSenders}
+            clients={clients} setClients={setClients}
+          />
+        )}
       </div>
     </>
+  );
+}
+/* ============================================================
+   READONLY PREVIEW (compact summary shown under editor selectors)
+   ============================================================ */
+function ReadonlyPreviewSender({ data }) {
+  const f = data.from || {};
+  const p = data.payment || {};
+  if (!f.name && !f.taxValue && !p.iban) {
+    return (
+      <div className="readonly-preview">
+        <div className="rp-empty">No sender selected. Pick a profile above or create one in Library.</div>
+      </div>
+    );
+  }
+  return (
+    <div className="readonly-preview">
+      <div className="rp-name">{f.name || '—'}</div>
+      {f.role && <div className="rp-sub">{f.role}</div>}
+      <div className="rp-lines">
+        {f.taxValue && <div><span className="rp-k">{f.taxLabel || 'Tax'}</span><span className="rp-v mono">{f.taxValue}</span></div>}
+        {f.phone && <div><span className="rp-k">Phone</span><span className="rp-v mono">{f.phone}</span></div>}
+        {f.email && <div><span className="rp-k">Email</span><span className="rp-v mono">{f.email}</span></div>}
+        {p.iban && <div><span className="rp-k">IBAN</span><span className="rp-v mono">{p.iban}</span></div>}
+        {p.swift && <div><span className="rp-k">BIC</span><span className="rp-v mono">{p.swift}</span></div>}
+      </div>
+    </div>
+  );
+}
+
+function ReadonlyPreviewClient({ data }) {
+  const b = data.billedTo || {};
+  if (!b.name && !b.address && !b.taxValue) {
+    return (
+      <div className="readonly-preview">
+        <div className="rp-empty">No client selected. Pick a client above or create one in Library.</div>
+      </div>
+    );
+  }
+  return (
+    <div className="readonly-preview">
+      <div className="rp-name">{b.name || '—'}</div>
+      <div className="rp-lines">
+        {b.address && <div><span className="rp-k">Address</span><span className="rp-v addr">{b.address}</span></div>}
+        {b.taxValue && <div><span className="rp-k">{b.taxLabel || 'Tax'}</span><span className="rp-v mono">{b.taxValue}</span></div>}
+      </div>
+    </div>
+  );
+}
+
+/* ============================================================
+   LIBRARY VIEW — manage sender profiles + clients
+   ============================================================ */
+function LibraryView({ senders, setSenders, clients, setClients }) {
+  return (
+    <div className="library">
+      <SenderLibrary senders={senders} setSenders={setSenders} />
+      <ClientLibrary clients={clients} setClients={setClients} />
+    </div>
+  );
+}
+
+function SenderLibrary({ senders, setSenders }) {
+  const [openId, setOpenId] = useState(null);
+
+  const addNew = () => {
+    const id = newId('s');
+    const fresh = {
+      id, label: 'New sender profile',
+      from: { name: '', role: '', address: '', taxLabel: 'ES NIF', taxValue: '', phone: '', email: '' },
+      payment: { beneficiary: '', bank: '', iban: '', swift: '', correspondentBic: '', bankAddress: '' },
+    };
+    setSenders(ss => [...ss, fresh]);
+    setOpenId(id);
+  };
+  const update = (id, patch) =>
+    setSenders(ss => ss.map(s => s.id === id ? { ...s, ...patch } : s));
+  const remove = (id) => {
+    const s = senders.find(x => x.id === id);
+    if (!confirm(`Delete profile "${s?.label || 'this profile'}"?`)) return;
+    setSenders(ss => ss.filter(x => x.id !== id));
+    if (openId === id) setOpenId(null);
+  };
+
+  return (
+    <div className="library-col">
+      <div className="library-col-head">
+        <div className="library-col-title">Sender profiles ({senders.length})</div>
+        <div className="library-col-desc">
+          Your own identities + payment details. Each profile bundles "From" info and bank details — pick one from the Editor to autofill an invoice.
+        </div>
+        <button className="btn btn-primary" onClick={addNew}><IconPlus /> Add new profile</button>
+      </div>
+      <div className="library-list">
+        {senders.length === 0 && <div className="library-empty">No sender profiles yet. Click "Add new profile" above.</div>}
+        {senders.map(s => (
+          <SenderCard
+            key={s.id} sender={s}
+            isOpen={openId === s.id}
+            onToggle={() => setOpenId(openId === s.id ? null : s.id)}
+            onUpdate={patch => update(s.id, patch)}
+            onDelete={() => remove(s.id)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function SenderCard({ sender, isOpen, onToggle, onUpdate, onDelete }) {
+  const from = sender.from || {};
+  const payment = sender.payment || {};
+  const updateFrom = patch => onUpdate({ from: { ...from, ...patch } });
+  const updatePayment = patch => onUpdate({ payment: { ...payment, ...patch } });
+
+  const summary = [
+    from.name,
+    from.taxValue && `${from.taxLabel || 'Tax'} ${from.taxValue}`,
+    payment.iban && `IBAN ${payment.iban.replace(/\s+/g, '').slice(0, 8)}…`
+  ].filter(Boolean).join(' · ') || '—';
+
+  return (
+    <div className={`lib-card ${isOpen ? 'open' : ''}`}>
+      <button className="lib-card-head" onClick={onToggle} type="button">
+        <div>
+          <div className="lib-card-title">{sender.label || 'Unnamed profile'}</div>
+          <div className="lib-card-sub">{summary}</div>
+        </div>
+        <span className="chev"><IconChevron open={isOpen} /></span>
+      </button>
+      {isOpen && (
+        <div className="lib-card-body">
+          <div className="field">
+            <label className="field-label">Profile label (shown in dropdowns)</label>
+            <input className="input" value={sender.label || ''}
+              onChange={e => onUpdate({ label: e.target.value })}
+              placeholder="e.g. Andrey Zhikalov — Autónomo" />
+          </div>
+
+          <div className="lib-card-section">Identity</div>
+          <div className="field-row field-row-2">
+            <div className="field">
+              <label className="field-label">Name</label>
+              <input className="input" value={from.name || ''}
+                onChange={e => updateFrom({ name: e.target.value })} />
+            </div>
+            <div className="field">
+              <label className="field-label">Role / subtitle</label>
+              <input className="input" value={from.role || ''}
+                onChange={e => updateFrom({ role: e.target.value })} />
+            </div>
+          </div>
+          <div className="field">
+            <label className="field-label">Address</label>
+            <textarea className="textarea" rows={3} value={from.address || ''}
+              onChange={e => updateFrom({ address: e.target.value })} />
+          </div>
+          <div className="field-row field-row-2">
+            <div className="field">
+              <label className="field-label">Tax label</label>
+              <input className="input" value={from.taxLabel || ''}
+                onChange={e => updateFrom({ taxLabel: e.target.value })} />
+            </div>
+            <div className="field">
+              <label className="field-label">Tax value</label>
+              <input className="input is-mono" value={from.taxValue || ''}
+                onChange={e => updateFrom({ taxValue: e.target.value })} />
+            </div>
+          </div>
+          <div className="field-row field-row-2">
+            <div className="field">
+              <label className="field-label">Phone</label>
+              <input className="input is-mono" value={from.phone || ''}
+                onChange={e => updateFrom({ phone: e.target.value })} />
+            </div>
+            <div className="field">
+              <label className="field-label">Email</label>
+              <input className="input is-mono" value={from.email || ''}
+                onChange={e => updateFrom({ email: e.target.value })} />
+            </div>
+          </div>
+
+          <div className="lib-card-section">Payment</div>
+          <div className="field-row field-row-2">
+            <div className="field">
+              <label className="field-label">Beneficiary</label>
+              <input className="input" value={payment.beneficiary || ''}
+                onChange={e => updatePayment({ beneficiary: e.target.value })} />
+            </div>
+            <div className="field">
+              <label className="field-label">Bank</label>
+              <input className="input" value={payment.bank || ''}
+                onChange={e => updatePayment({ bank: e.target.value })} />
+            </div>
+          </div>
+          <div className="field">
+            <label className="field-label">IBAN</label>
+            <input className="input is-mono" value={payment.iban || ''}
+              onChange={e => updatePayment({ iban: e.target.value })} />
+          </div>
+          <div className="field-row field-row-2">
+            <div className="field">
+              <label className="field-label">SWIFT / BIC</label>
+              <input className="input is-mono" value={payment.swift || ''}
+                onChange={e => updatePayment({ swift: e.target.value })} />
+            </div>
+            <div className="field">
+              <label className="field-label">Correspondent BIC</label>
+              <input className="input is-mono" value={payment.correspondentBic || ''}
+                onChange={e => updatePayment({ correspondentBic: e.target.value })} />
+            </div>
+          </div>
+          <div className="field">
+            <label className="field-label">Bank address</label>
+            <textarea className="textarea" rows={2} value={payment.bankAddress || ''}
+              onChange={e => updatePayment({ bankAddress: e.target.value })} />
+          </div>
+
+          <div className="lib-card-actions">
+            <button className="btn danger btn-ghost" onClick={onDelete}>
+              <IconTrash /> Delete profile
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ClientLibrary({ clients, setClients }) {
+  const [openId, setOpenId] = useState(null);
+
+  const addNew = () => {
+    const id = newId('c');
+    const fresh = {
+      id, label: 'New client', name: '', address: '', taxLabel: 'VAT', taxValue: '',
+    };
+    setClients(cs => [...cs, fresh]);
+    setOpenId(id);
+  };
+  const update = (id, patch) =>
+    setClients(cs => cs.map(c => c.id === id ? { ...c, ...patch } : c));
+  const remove = (id) => {
+    const c = clients.find(x => x.id === id);
+    if (!confirm(`Delete client "${c?.label || 'this client'}"?`)) return;
+    setClients(cs => cs.filter(x => x.id !== id));
+    if (openId === id) setOpenId(null);
+  };
+
+  return (
+    <div className="library-col">
+      <div className="library-col-head">
+        <div className="library-col-title">Clients ({clients.length})</div>
+        <div className="library-col-desc">
+          Companies and individuals you invoice. Each entry stores the address and tax ID used under "Billed To".
+        </div>
+        <button className="btn btn-primary" onClick={addNew}><IconPlus /> Add new client</button>
+      </div>
+      <div className="library-list">
+        {clients.length === 0 && <div className="library-empty">No clients yet. Click "Add new client" above.</div>}
+        {clients.map(c => (
+          <ClientCard
+            key={c.id} client={c}
+            isOpen={openId === c.id}
+            onToggle={() => setOpenId(openId === c.id ? null : c.id)}
+            onUpdate={patch => update(c.id, patch)}
+            onDelete={() => remove(c.id)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ClientCard({ client, isOpen, onToggle, onUpdate, onDelete }) {
+  const summary = [
+    client.name,
+    client.taxValue && `${client.taxLabel || 'Tax'} ${client.taxValue}`,
+  ].filter(Boolean).join(' · ') || '—';
+
+  return (
+    <div className={`lib-card ${isOpen ? 'open' : ''}`}>
+      <button className="lib-card-head" onClick={onToggle} type="button">
+        <div>
+          <div className="lib-card-title">{client.label || 'Unnamed client'}</div>
+          <div className="lib-card-sub">{summary}</div>
+        </div>
+        <span className="chev"><IconChevron open={isOpen} /></span>
+      </button>
+      {isOpen && (
+        <div className="lib-card-body">
+          <div className="field">
+            <label className="field-label">Client label (shown in dropdowns)</label>
+            <input className="input" value={client.label || ''}
+              onChange={e => onUpdate({ label: e.target.value })}
+              placeholder="e.g. smiit GmbH" />
+          </div>
+          <div className="field">
+            <label className="field-label">Client name (on invoice)</label>
+            <input className="input" value={client.name || ''}
+              onChange={e => onUpdate({ name: e.target.value })} />
+          </div>
+          <div className="field">
+            <label className="field-label">Address</label>
+            <textarea className="textarea" rows={3} value={client.address || ''}
+              onChange={e => onUpdate({ address: e.target.value })} />
+          </div>
+          <div className="field-row field-row-2">
+            <div className="field">
+              <label className="field-label">Tax label</label>
+              <input className="input" value={client.taxLabel || ''}
+                onChange={e => onUpdate({ taxLabel: e.target.value })}
+                placeholder="VAT" />
+            </div>
+            <div className="field">
+              <label className="field-label">Tax value</label>
+              <input className="input is-mono" value={client.taxValue || ''}
+                onChange={e => onUpdate({ taxValue: e.target.value })}
+                placeholder="DE35 7299 821" />
+            </div>
+          </div>
+
+          <div className="lib-card-actions">
+            <button className="btn danger btn-ghost" onClick={onDelete}>
+              <IconTrash /> Delete client
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -1957,6 +2305,8 @@ function LedgerPreview({ data, subtotal, taxAmount, total, dueDateIso }) {
         <div className="ld-office">
           <div><span className="lbl">Office:</span> {fromCity || '—'}</div>
           <div><span className="lbl">Issue date:</span> {formatDateDigits(meta.date)}</div>
+          <div><span className="lbl">Invoice Nº:</span> {meta.number || '—'}</div>
+          <div><span className="lbl">Due date:</span> {formatDateDigits(dueDateIso)}</div>
         </div>
       </div>
 
@@ -1965,7 +2315,6 @@ function LedgerPreview({ data, subtotal, taxAmount, total, dueDateIso }) {
       <div className="ld-three">
         <div className="ld-three-head">
           <div>Issued by</div>
-          <div>Amount</div>
           <div>Billed to</div>
         </div>
         <div className="ld-three-body">
@@ -1980,18 +2329,6 @@ function LedgerPreview({ data, subtotal, taxAmount, total, dueDateIso }) {
               {from.email &&    <><div className="k">Email:</div><div className="v">{from.email}</div></>}
               {from.phone &&    <><div className="k">Phone:</div><div className="v mono">{from.phone}</div></>}
               {from.address &&  <><div className="k">Address:</div><div className="v addr">{from.address}</div></>}
-            </div>
-          </div>
-          <div className="ld-three-col">
-            <div className="ld-primary">
-              <span className="ld-arrow">»</span>
-              <span className="ld-primary-text amount">{formatMoney(total, ccy)}</span>
-            </div>
-            <div className="ld-kv">
-              <div className="k">Currency:</div><div className="v">{ccy}</div>
-              <div className="k">Invoice Nº:</div><div className="v mono">{meta.number || '—'}</div>
-              <div className="k">Due date:</div><div className="v">{formatDateDigits(dueDateIso)}</div>
-              <div className="k">Tax:</div><div className="v">{toNum(meta.taxPercent)}%</div>
             </div>
           </div>
           <div className="ld-three-col">
