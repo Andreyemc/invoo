@@ -228,11 +228,11 @@ input, textarea, select { font-family: inherit; font-size: inherit; color: inher
    Red accent · key-value rows with thin underlines · classic statement layout
    ============================================================ */
 .paper.t-statement {
-  padding: 44px 48px 36px;
+  padding: 40px 48px 36px;
   font-family: 'Noto Sans', system-ui, sans-serif;
   color: #111;
 }
-@media (max-width: 640px) { .paper.t-statement { padding: 28px 24px 24px; } }
+@media (max-width: 640px) { .paper.t-statement { padding: 26px 22px 22px; } }
 
 .t-statement .st-head {
   display: grid; grid-template-columns: 1fr auto;
@@ -421,11 +421,11 @@ input, textarea, select { font-family: inherit; font-size: inherit; color: inher
    Blue accent · all-caps labels with tight letter-spacing · signature blocks
    ============================================================ */
 .paper.t-formal {
-  padding: 44px 48px 36px;
+  padding: 40px 48px 36px;
   font-family: 'Noto Sans', system-ui, sans-serif;
   color: #000;
 }
-@media (max-width: 640px) { .paper.t-formal { padding: 28px 24px 24px; } }
+@media (max-width: 640px) { .paper.t-formal { padding: 26px 22px 22px; } }
 
 .t-formal .fm-head {
   display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
@@ -578,16 +578,42 @@ input, textarea, select { font-family: inherit; font-size: inherit; color: inher
   display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
 }
 
+.t-formal .fm-payment-block {
+  margin-top: 22px;
+  padding: 14px 0;
+  border-top: 0.5px solid #000;
+  border-bottom: 0.5px solid #000;
+}
+.t-formal .fm-payment-head {
+  font-size: 9pt; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.5px;
+  color: #000; margin-bottom: 10px;
+}
+.t-formal .fm-payment-grid {
+  display: grid; grid-template-columns: max-content 1fr;
+  gap: 4px 18px;
+}
+.t-formal .fm-payment-k {
+  text-transform: uppercase; letter-spacing: 0.3px; font-weight: 500;
+  color: #555; white-space: nowrap; font-size: 8.5pt;
+}
+.t-formal .fm-payment-k::after { content: ':'; }
+.t-formal .fm-payment-v {
+  color: #000; overflow-wrap: anywhere; font-size: 9.5pt;
+}
+.t-formal .fm-payment-v.mono { font-family: 'Noto Sans Mono', monospace; font-size: 9pt; }
+.t-formal .fm-payment-v.addr { font-size: 9pt; color: #333; }
+
 /* ============================================================
    THEME 3 — LEDGER
    Red accent · three-column gray-header summary · » arrows
    ============================================================ */
 .paper.t-ledger {
-  padding: 40px 44px 32px;
+  padding: 40px 48px 36px;
   font-family: 'Noto Sans', system-ui, sans-serif;
   color: #1a1a1a;
 }
-@media (max-width: 640px) { .paper.t-ledger { padding: 24px 20px 22px; } }
+@media (max-width: 640px) { .paper.t-ledger { padding: 26px 22px 22px; } }
 
 .t-ledger .ld-head {
   display: grid; grid-template-columns: 1fr auto;
@@ -786,12 +812,12 @@ input, textarea, select { font-family: inherit; font-size: inherit; color: inher
    Grayscale · rounded soft panels · calm info area (no black panel)
    ============================================================ */
 .paper.t-modern {
-  padding: 40px 44px 36px;
+  padding: 40px 48px 36px;
   font-family: 'Noto Sans', system-ui, sans-serif;
   color: #0a0a0a; background: #fff;
   border-radius: 6px;
 }
-@media (max-width: 640px) { .paper.t-modern { padding: 24px 20px 22px; } }
+@media (max-width: 640px) { .paper.t-modern { padding: 26px 22px 22px; } }
 
 .t-modern .mo-head {
   display: grid; grid-template-columns: 1fr auto;
@@ -1287,9 +1313,7 @@ export default function InvoiceEditor({ initialData, initialClients, initialSend
       <div className="app">
         <div className="topbar">
           <div className="topbar-title">
-            <span className="brand">Andrey Zhikalov</span>
-            <span className="sep" />
-            <span>Invoice Editor</span>
+            <span className="brand">invoo.app</span>
           </div>
           <div className="topbar-actions">
             <div className="theme-switch" role="tablist" aria-label="Design theme">
@@ -1818,9 +1842,7 @@ function FormalPreview({ data, subtotal, taxAmount, total, dueDateIso }) {
         <div className="fm-meta-grid">
           <div className="fm-meta-k">Date</div><div className="fm-meta-v">{formatDateLong(meta.date)}</div>
           <div className="fm-meta-k">Invoice No.</div><div className="fm-meta-v mono">{meta.number || '—'}</div>
-          <div className="fm-meta-k">Account Name</div><div className="fm-meta-v">{payment.beneficiary || '—'}</div>
-          <div className="fm-meta-k">IBAN</div><div className="fm-meta-v mono">{payment.iban || '—'}</div>
-          <div className="fm-meta-k">Swift/BIC</div><div className="fm-meta-v mono">{payment.swift || '—'}</div>
+          <div className="fm-meta-k">Currency</div><div className="fm-meta-v">{ccy}</div>
           <div className="fm-meta-k">Due Date</div><div className="fm-meta-v">{formatDateLong(dueDateIso)}</div>
         </div>
       </div>
@@ -1866,6 +1888,32 @@ function FormalPreview({ data, subtotal, taxAmount, total, dueDateIso }) {
             <div className="label">Balance — {formatDateDigits(meta.date)}</div>
             <div className="val">{formatMoney(total, ccy)}</div>
           </div>
+        </div>
+      </div>
+
+      <div className="fm-payment-block">
+        <div className="fm-payment-head">Payment Information</div>
+        <div className="fm-payment-grid">
+          <div className="fm-payment-k">Account Name</div>
+          <div className="fm-payment-v">{payment.beneficiary || '—'}</div>
+          <div className="fm-payment-k">Bank</div>
+          <div className="fm-payment-v">{payment.bank || '—'}</div>
+          <div className="fm-payment-k">IBAN</div>
+          <div className="fm-payment-v mono">{payment.iban || '—'}</div>
+          <div className="fm-payment-k">Swift/BIC</div>
+          <div className="fm-payment-v mono">{payment.swift || '—'}</div>
+          {payment.correspondentBic && (
+            <>
+              <div className="fm-payment-k">Correspondent</div>
+              <div className="fm-payment-v mono">{payment.correspondentBic}</div>
+            </>
+          )}
+          {payment.bankAddress && (
+            <>
+              <div className="fm-payment-k">Bank Address</div>
+              <div className="fm-payment-v addr">{payment.bankAddress}</div>
+            </>
+          )}
         </div>
       </div>
 
